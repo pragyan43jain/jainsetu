@@ -79,7 +79,7 @@ function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
               textTransform: "uppercase",
               marginTop: "-3px",
               fontWeight: 600
-            }}>Digitalizing Community</div>
+            }}>Digitalizing Jain Community</div>
           </div>
         </div>
 
