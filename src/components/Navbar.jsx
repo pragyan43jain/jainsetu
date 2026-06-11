@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logoImage from "../assets/logo.png";
 
 function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,60 +9,38 @@ function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
       position: "sticky",
       top: 0,
       zIndex: 100,
-      padding: "15px 0",
+      padding: "12px 0",
       boxShadow: "var(--shadow-sm)"
     }}>
       <div className="container" style={{
         display: "flex",
-        justifyContent: "between",
+        justifyContent: "space-between",
         alignItems: "center",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        gap: "10px"
       }}>
-        {/* Elegant SVG Logo & Title */}
-        <div 
+
+        {/* Logo + Brand Name */}
+        <div
           onClick={() => setActiveTab("home")}
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "12px",
-            cursor: "pointer"
+            gap: "10px",
+            cursor: "pointer",
+            flexShrink: 0
           }}
         >
-          <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Parasnath/Prabha-mandal hood backdrop */}
-            <circle cx="50" cy="50" r="45" stroke="url(#goldGrad)" strokeWidth="1.5" strokeDasharray="3 3" />
-            <circle cx="50" cy="50" r="38" stroke="url(#goldGrad)" strokeWidth="0.75" />
-            
-            {/* Elegant Bridge / Setu lines (double arches) */}
-            <path d="M15 65 C 30 40, 70 40, 85 65" stroke="url(#goldGrad)" strokeWidth="4" strokeLinecap="round" />
-            <path d="M25 68 C 35 52, 65 52, 75 68" stroke="url(#goldGrad)" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
-            
-            {/* Stylized Lotus Bloom at the center of the bridge */}
-            <path d="M50 34 C44 44, 46 55, 50 55 C54 55, 56 44, 50 34 Z" fill="url(#maroonGrad)" />
-            <path d="M50 34 C40 38, 42 48, 48 51 C45 44, 48 38, 50 34 Z" fill="url(#goldGrad)" opacity="0.9" />
-            <path d="M50 34 C60 38, 58 48, 52 51 C55 44, 52 38, 50 34 Z" fill="url(#goldGrad)" opacity="0.9" />
-            <path d="M50 34 C36 42, 36 52, 45 54 C40 47, 46 40, 50 34 Z" fill="url(#goldGrad)" opacity="0.7" />
-            <path d="M50 34 C64 42, 64 52, 55 54 C60 47, 54 40, 50 34 Z" fill="url(#goldGrad)" opacity="0.7" />
-
-            {/* Radiant sunbeams representing Gyan (knowledge) */}
-            <line x1="50" y1="12" x2="50" y2="22" stroke="url(#goldGrad)" strokeWidth="2" strokeLinecap="round" />
-            <line x1="30" y1="20" x2="37" y2="27" stroke="url(#goldGrad)" strokeWidth="2" strokeLinecap="round" />
-            <line x1="70" y1="20" x2="63" y2="27" stroke="url(#goldGrad)" strokeWidth="2" strokeLinecap="round" />
-
-            {/* Gradient Definitions */}
-            <defs>
-              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#e6c567" />
-                <stop offset="50%" stopColor="#cfa838" />
-                <stop offset="100%" stopColor="#a88321" />
-              </linearGradient>
-              <linearGradient id="maroonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#b02332" />
-                <stop offset="100%" stopColor="#851722" />
-              </linearGradient>
-            </defs>
-          </svg>
-
+          <img
+            src={logoImage}
+            alt="JainSetu Logo"
+            style={{
+              width: "42px",
+              height: "42px",
+              objectFit: "contain",
+              borderRadius: "8px"
+            }}
+          />
           <div>
             <span style={{
               fontFamily: "var(--font-heading)",
@@ -73,18 +52,18 @@ function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
               letterSpacing: "-0.5px"
             }}>JainSetu</span>
             <div style={{
-              fontSize: "0.6rem",
+              fontSize: "0.55rem",
               color: "var(--text-muted)",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
-              marginTop: "-3px",
+              marginTop: "-2px",
               fontWeight: 600
             }}>Digitalizing Jain Community</div>
           </div>
         </div>
 
-        {/* Mobile menu Toggle */}
-        <button 
+        {/* Mobile hamburger toggle */}
+        <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
             display: "none",
@@ -95,7 +74,7 @@ function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
           }}
           className="mobile-toggle-btn"
         >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary-gold-dark)" strokeWidth="2.5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary-gold-dark)" strokeWidth="2.5">
             {menuOpen ? (
               <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
             ) : (
@@ -104,38 +83,38 @@ function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
           </svg>
         </button>
 
-        {/* Navigation Menu */}
-        <div 
+        {/* Center Nav Links + Right-side Auth Buttons */}
+        <div
           className={`nav-menu-container ${menuOpen ? "open" : ""}`}
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "35px"
+            justifyContent: "flex-end",
+            gap: "30px",
+            flex: 1
           }}
         >
+          {/* Nav Links */}
           <ul style={{
             display: "flex",
             listStyle: "none",
-            gap: "25px",
+            gap: "22px",
             margin: 0,
             padding: 0
           }} className="nav-links-list">
             {[
-              { id: "home", label: "Home" },
-              { id: "boli", label: "Boli Portal" },
-              { id: "donations", label: "Donations" },
-              { id: "temples", label: "Temples" }
+              { id: "home",      label: "Home"       },
+              { id: "boli",      label: "Boli Portal" },
+              { id: "donations", label: "Donations"   },
+              { id: "temples",   label: "Temples"     }
             ].map((link) => (
-              <li 
+              <li
                 key={link.id}
-                onClick={() => {
-                  setActiveTab(link.id);
-                  setMenuOpen(false);
-                }}
+                onClick={() => { setActiveTab(link.id); setMenuOpen(false); }}
                 style={{
                   fontFamily: "var(--font-heading)",
                   fontWeight: 600,
-                  fontSize: "0.95rem",
+                  fontSize: "0.92rem",
                   cursor: "pointer",
                   color: activeTab === link.id ? "var(--accent-maroon)" : "var(--text-muted)",
                   position: "relative",
@@ -160,18 +139,19 @@ function Navbar({ activeTab, setActiveTab, onOpenLogin }) {
             ))}
           </ul>
 
-          <div style={{ display: "flex", gap: "10px" }} className="nav-buttons-container">
-            <button 
-              className="btn-outline-gold" 
+          {/* Auth Buttons — pushed to far right */}
+          <div style={{ display: "flex", gap: "8px", marginLeft: "auto" }} className="nav-buttons-container">
+            <button
+              className="btn-outline-gold"
               onClick={() => onOpenLogin("user")}
-              style={{ padding: "8px 18px", fontSize: "0.85rem" }}
+              style={{ padding: "7px 14px", fontSize: "0.8rem" }}
             >
               User Login
             </button>
-            <button 
-              className="btn-gold" 
+            <button
+              className="btn-gold"
               onClick={() => onOpenLogin("temple")}
-              style={{ padding: "8px 18px", fontSize: "0.85rem" }}
+              style={{ padding: "7px 14px", fontSize: "0.8rem" }}
             >
               Temple Login
             </button>
